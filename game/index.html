@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Garis Senja — Tactical FPS</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="game"></div>
+
+<div id="hud" aria-hidden="true">
+  <div id="crosshair"><i></i><i></i><i></i><i></i></div>
+  <div id="hitmarker"><i></i><i></i><i></i><i></i></div>
+  <div id="vignette"></div>
+  <div id="scope"><div class="scope-h"></div><div class="scope-v"></div></div>
+
+  <div id="topbar">
+    <div id="round-label">RONDE 1 / 9</div>
+    <div id="scoreboard"><span id="score-elang" class="elang">0</span><span id="timer">1:40</span><span id="score-bayang" class="bayang">0</span></div>
+    <div id="top-right"><span id="money">$800</span><span id="mute-state"></span><span id="bomb-status"></span></div>
+  </div>
+
+  <canvas id="minimap" width="180" height="180"></canvas>
+
+  <div id="health-wrap">
+    <div class="bar-label">NYAWA <b id="health-num">100</b></div>
+    <div class="bar"><div id="health-bar"></div></div>
+    <div id="armor-wrap">
+      <div class="bar-label">ROMPI <b id="armor-num">0</b></div>
+      <div class="bar armor"><div id="armor-bar"></div></div>
+    </div>
+  </div>
+
+  <div id="ammo-wrap">
+    <div id="weapon-name">P-9</div>
+    <div id="ammo"><span id="ammo-mag">12</span><span id="ammo-reserve">/ 48</span></div>
+    <div id="grenade-info">G: Ledak ×0 · Asap ×0</div>
+    <div id="reload-state"></div>
+    <div id="bomb-badge">BOM</div>
+  </div>
+
+  <div id="feed"></div>
+
+  <div id="banner"><div id="banner-title"></div><div id="banner-sub"></div></div>
+
+  <div id="prompt"><span id="prompt-text"></span></div>
+  <div id="progress-wrap"><div id="progress-label"></div><div class="bar progress"><div id="progress-bar"></div></div></div>
+
+  <div id="buy-menu">
+    <div class="buy-head"><span>MENU BELI</span><span id="buy-money">$800</span></div>
+    <div id="buy-list"></div>
+    <div class="buy-hint">Tekan 1–7 untuk membeli · B untuk menutup</div>
+  </div>
+</div>
+
+<div id="screen-title" class="overlay">
+  <section class="panel" role="dialog" aria-modal="true" aria-labelledby="title-heading">
+    <h1 id="title-heading">Garis Senja</h1>
+    <p class="tagline">Tactical FPS di pelabuhan saat senja. Tim Elang menyerang, tim Bayang bertahan.</p>
+    <p>Pasang bom di Site A atau B, atau habisi semua musuh. Menang 5 ronde untuk memenangkan misi. Setiap ronde membawa uang untuk membeli senjata, granat, dan rompi. Berhenti untuk membidik — tembakan sambil berlari menyebar.</p>
+    <button id="btn-start" type="button">Mulai Misi</button>
+    <ul class="keys">
+      <li><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd> Gerak</li>
+      <li><kbd>Mouse</kbd> Bidik</li>
+      <li><kbd>Klik</kbd> Tembak</li>
+      <li><kbd>Klik kanan</kbd> Bidik presisi</li>
+      <li><kbd>R</kbd> Muat ulang</li>
+      <li><kbd>1–4</kbd> Senjata</li>
+      <li><kbd>5</kbd>/<kbd>6</kbd> Granat</li>
+      <li><kbd>G</kbd> Lempar granat ledak</li>
+      <li><kbd>F</kbd> Pasang bom (tahan)</li>
+      <li><kbd>B</kbd> Menu beli</li>
+      <li><kbd>Shift</kbd> Lari</li>
+      <li><kbd>C</kbd> Jongkok</li>
+      <li><kbd>Spasi</kbd> Lompat</li>
+      <li><kbd>M</kbd> Suara</li>
+    </ul>
+  </section>
+</div>
+
+<div id="screen-pause" class="overlay" hidden>
+  <section class="panel" role="dialog" aria-modal="true" aria-labelledby="pause-heading">
+    <h1 id="pause-heading">Jeda</h1>
+    <p>Misi berhenti. Lanjutkan, atau mulai dari awal.</p>
+    <button id="btn-resume" type="button">Lanjutkan</button>
+    <button id="btn-restart-pause" type="button" class="ghost">Mulai dari Awal</button>
+  </section>
+</div>
+
+<div id="screen-end" class="overlay" hidden>
+  <section class="panel" role="dialog" aria-modal="true" aria-labelledby="end-title">
+    <h1 id="end-title">MISI BERHASIL</h1>
+    <p id="end-score">Elang 5 — 0 Bayang</p>
+    <p id="end-stats"></p>
+    <button id="btn-restart" type="button">Main Lagi</button>
+  </section>
+</div>
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "./vendor/three/three.module.min.js"
+  }
+}
+</script>
+<script type="module" src="./src/main.js"></script>
+</body>
+</html>
